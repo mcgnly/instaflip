@@ -1,27 +1,29 @@
-import jsPDF from 'jspdf'
+import jsPDF from "jspdf";
 
 class Pdf {
-	constructor(){
-		this.doc
-	}
-
-	instantiatePDF(){
-		this.doc = new jsPDF({
-			orientation: 'landscape',
+	constructor() {
+		this._type = "Pdf";
+		this.myPdf = new jsPDF({
+			orientation: "landscape",
 			format: [60, 90]
 		});
-		this.doc.text('This is the cover!', 1, 1)
+		this.instantiatePDF = this.instantiatePDF.bind(this);
+		this.addPageToPDF = this.addPageToPDF.bind(this);
+		this.savePDF = this.savePDF.bind(this);
+	}
+
+	instantiatePDF() {
+		this.myPdf.text("This is the cover!", 30, 65);
 	}
 
 	addPageToPDF(imgData) {
-	  this.doc.addPage();
-	  this.doc.addImage(imgData, 'JPEG', 30, 10, 80, 60, 'monkey');
+		this.myPdf.addPage();
+		this.myPdf.addImage(imgData, "JPEG", 10, 10, 50, 50, "monkey");
 	}
 
-	savePDF(){
-	  this.doc.save('two-by-four.pdf')
+	savePDF() {
+		this.myPdf.save("two-by-four.pdf");
 	}
 }
 
-export
-default Pdf;
+export default new Pdf();

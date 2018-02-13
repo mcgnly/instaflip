@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Basic from "./Basic";
 
@@ -8,13 +7,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Instaflip</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-
+        <h3>
+          Ever wish your instagram stories had a little more... permanance? Or
+          were a bit more tactile?
+        </h3>
+        <p>Convert your short video to a flipbook</p>
         <Basic />
       </div>
     );
