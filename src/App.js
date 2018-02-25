@@ -9,11 +9,10 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Instaflip</h1>
         </header>
-        <h3>
-          Ever wish your instagram stories had a little more... permanance? Or
-          were a bit more tactile?
+        <h3 className='description'>
+          Convert your instagram story into a flipbook. In case that's something you've always wanted to do.
         </h3>
-        <p>Convert your short video to a flipbook</p>
+        
         <Basic />
       </div>
     );

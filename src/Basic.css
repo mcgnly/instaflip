@@ -1,0 +1,28 @@
+.gifDisplay {
+	display: grid;
+	grid-template-columns: 25% auto 25%;
+	grid-template-rows: 25% auto 25%;
+}
+
+.gifElement {
+	grid-column-start: 2;
+	grid-row-start: 1;
+}
+
+
+.gifTitle {
+	grid-column-start: 2;
+	grid-row-start: 2;
+}
+
+.pdfDownload {
+	grid-column-start: 2;
+	grid-row-start: 3;
+	background-color: pink;
+}
+
+.sendToPrinter {
+	grid-column-start: 2;
+	grid-row-start: 4;
+	background-color: orange;
+}

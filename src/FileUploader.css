@@ -1,0 +1,25 @@
+.dropzone {
+	display: grid;
+	grid-template-columns: 25% auto 25%;
+	grid-template-rows: 25% auto 25%;
+}
+
+.description {
+	grid-column-start: 2;
+	grid-row-start: 1;
+}
+
+
+.dropButton {
+	grid-column-start: 2;
+	grid-row-start: 2;
+	background-color: #fcd633;
+	border-radius: 5px;
+}
+
+.descriptionText {
+	grid-column-start: 1;
+	grid-row-start: 3;
+	margin: 2em;
+	grid-column-end: span 3;
+}

@@ -7,6 +7,7 @@ import {
   getImageFromUrl,
   convertToGif
 } from "./imageUtils.js";
+import './Basic.css';
 
 class Basic extends Component {
   constructor() {
@@ -35,7 +36,8 @@ class Basic extends Component {
     convertToGif(files).then(obj => {
       //add the gif to the state to display it
       this.setState({
-        gifVideo: obj.image
+        gifVideo: obj.image,
+        // loadingProgress
       });
 
       //now convert the canvases from the gif to images
@@ -71,19 +73,20 @@ class Basic extends Component {
           </div>
         )}
         {this.state.gifVideo && (
-          <div>
-            <h3>look, a gif</h3>
-            <img src={this.state.gifVideo} alt="gif" />
-            <button onClick={Pdf.savePDF}>Download the PDF</button>
-            <FileDisplay
-              files={this.state.files}
-              gifArray={this.state.gifArray}
-            />
+          <div className='gifDisplay'>
+            <img className='gifElement' src={this.state.gifVideo} alt="gif" />
+            <h3 className='gifTitle'>Here's what your flipbook will look like!</h3>
+            <button className='pdfDownload' onClick={Pdf.savePDF}>Download the PDF to print from home</button>
+            <button className='sendToPrinter' onClick={()=>console.log('email to me')}>Send the book to the printers</button>
           </div>
         )}
       </section>
     );
   }
 }
+            // <FileDisplay
+              // files={this.state.files}
+              // gifArray={this.state.gifArray}
+            // />
 
 export default Basic;

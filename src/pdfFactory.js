@@ -5,7 +5,7 @@ class Pdf {
 		this._type = "Pdf";
 		this.myPdf = new jsPDF({
 			orientation: "landscape",
-			format: [60, 90]
+			format: [74, 105]
 		});
 		this.instantiatePDF = this.instantiatePDF.bind(this);
 		this.addPageToPDF = this.addPageToPDF.bind(this);
@@ -13,16 +13,16 @@ class Pdf {
 	}
 
 	instantiatePDF() {
-		this.myPdf.text("This is the cover!", 30, 65);
+		this.myPdf.text("Instaflip", 30, 50);
 	}
 
 	addPageToPDF(imgData) {
 		this.myPdf.addPage();
-		this.myPdf.addImage(imgData, "JPEG", 10, 10, 50, 50, "monkey");
+		this.myPdf.addImage(imgData, "JPEG", 43, 12, 50, 50);
 	}
 
 	savePDF() {
-		this.myPdf.save("two-by-four.pdf");
+		this.myPdf.save("Instaflip.pdf");
 	}
 }
 

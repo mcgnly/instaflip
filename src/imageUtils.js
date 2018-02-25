@@ -36,6 +36,7 @@ export const convertToGif = files => {
       {
         video: [file],
         saveRenderingContexts: true,
+        //standard 10 frames per second, number of frames caps it
         numFrames: 10,
         progressCallback: function(captureProgress) {
           console.log(captureProgress * 100, " % done");
