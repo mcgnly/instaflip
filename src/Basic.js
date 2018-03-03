@@ -7,7 +7,9 @@ import {
   getImageFromUrl,
   convertToGif
 } from "./imageUtils.js";
+import Circle from "react-progressbar";
 import "./Basic.css";
+import "./loading-bar.css";
 
 class Basic extends Component {
   constructor() {
@@ -66,34 +68,51 @@ class Basic extends Component {
   }
 
   render() {
+    const widthOfProgressBar = 500 * this.state.loadingProgress;
     return (
-      <section>
-        {!this.state.gifVideo && (
-          <div>
+      <div>
+        {!this.state.gifVideo ? (
+          <h3 className="description">
+            Convert your instagram story into a flipbook. In case that's
+            something you've always wanted to do.
+          </h3>
+        ) : (
+          <h3 className="gifTitle">
+            Here's what your flipbook will look like!
+          </h3>
+        )}
+        <section>
+          {this.state.loadingProgress > 0 &&
+            !this.state.gifVideo && (
+              <svg height="10">
+                <rect
+                  width={widthOfProgressBar}
+                  height="10"
+                  fill="purple"
+                  fillOpacity="0.5"
+                  strokeOpacity="0.8"
+                />
+              </svg>
+            )}
+          {!this.state.gifVideo && (
             <FileUploader onDrop={this.onDrop.bind(this)} />
-            <aside>
-              <div> {this.state.loadingProgress} </div>
-            </aside>
-          </div>
-        )}
-        {this.state.gifVideo && (
-          <div className="gifDisplay">
-            <img className="gifElement" src={this.state.gifVideo} alt="gif" />
-            <h3 className="gifTitle">
-              Here's what your flipbook will look like!
-            </h3>
-            <div className="pdfButton" onClick={Pdf.savePDF}>
-              Download the PDF to print from home
+          )}
+          {this.state.gifVideo && (
+            <div className="gifDisplay">
+              <img className="gifElement" src={this.state.gifVideo} alt="gif" />
+              <div className="pdfButton" onClick={Pdf.savePDF}>
+                Download the PDF to print from home
+              </div>
+              <div
+                className="printButton"
+                onClick={() => console.log("email to me")}
+              >
+                Send the book to the printers
+              </div>
             </div>
-            <div
-              className="printButton"
-              onClick={() => console.log("email to me")}
-            >
-              Send the book to the printers
-            </div>
-          </div>
-        )}
-      </section>
+          )}
+        </section>
+      </div>
     );
   }
 }
