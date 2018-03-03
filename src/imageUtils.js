@@ -29,7 +29,7 @@ export const getImageFromUrl = (url, callback) => {
 };
 
 // convert to a gif
-export const convertToGif = files => {
+export const convertToGif = (files, progressCallback) => {
   const file = files[0];
   return new Promise((resolve, reject) => {
     gifshot.createGIF(
@@ -39,6 +39,8 @@ export const convertToGif = files => {
         //standard 10 frames per second, number of frames caps it
         numFrames: 10,
         progressCallback: function(captureProgress) {
+          progressCallback(captureProgress);
+          //
           console.log(captureProgress * 100, " % done");
           // TODO somehow need to bind to this
           // this.setState({
