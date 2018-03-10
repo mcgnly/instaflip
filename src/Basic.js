@@ -23,7 +23,7 @@ class Basic extends Component {
   }
 
   componentDidMount() {
-    Pdf.instantiatePDF();
+    Pdf.instantiatePDF("katie");
   }
 
   // drop an .mp4 in
@@ -77,30 +77,28 @@ class Basic extends Component {
         <section>
           {this.state.loadingProgress > 0 &&
             !this.state.gifVideo && (
-              <svg height="10">
-                <rect
-                  width={widthOfProgressBar}
-                  height="10"
-                  fill="purple"
-                  fillOpacity="0.5"
-                  strokeOpacity="0.8"
-                />
-              </svg>
+              <div>
+                <svg height="10">
+                  <rect
+                    width={widthOfProgressBar}
+                    height="10"
+                    fill="purple"
+                    fillOpacity="0.5"
+                    strokeOpacity="0.8"
+                  />
+                </svg>
+                <h3>Converting...</h3>
+              </div>
             )}
-          {!this.state.gifVideo && (
-            <FileUploader onDrop={this.onDrop.bind(this)} />
-          )}
+          {!this.state.gifVideo &&
+            !this.state.loadingProgress > 0 && (
+              <FileUploader onDrop={this.onDrop.bind(this)} />
+            )}
           {this.state.gifVideo && (
             <div className="gifDisplay">
               <img className="gifElement" src={this.state.gifVideo} alt="gif" />
               <div className="pdfButton" onClick={Pdf.savePDF}>
                 Download the PDF to print from home
-              </div>
-              <div
-                className="printButton"
-                onClick={() => console.log("email to me")}
-              >
-                Send the book to the printers
               </div>
             </div>
           )}
@@ -110,4 +108,10 @@ class Basic extends Component {
   }
 }
 
+// <div
+// className="printButton"
+// onClick={() => console.log("email to me")}
+// >
+// Send the book to the printers
+// </div>
 export default Basic;

@@ -13,11 +13,13 @@ class Pdf {
 		this.savePDF = this.savePDF.bind(this);
 	}
 
-	instantiatePDF() {
-		this.myPdf.text("Instaflip", 30, 50);
+	instantiatePDF(name) {
+		this.myPdf.text("Instaflip", 42, 40);
+		this.myPdf.text("by: " + name, 42, 50);
 	}
 
 	addPageToPDF(imgData, pgNumber) {
+		// 2 cols and 4 rows fit on a page
 		const col = pgNumber % 2 === 0 ? 2 : 1; //1 or 2
 		const row = Math.ceil(pgNumber / 2); //1-4
 		const printRow = row > 4 ? row - 4 : row;
@@ -25,9 +27,8 @@ class Pdf {
 			this.myPdf.addPage();
 		}
 		const x = 105 * (col - 1);
-		const y = 74 * (printRow - 1);
-		console.log(col, row);
-		this.myPdf.rect(x, y, 105, 74); //x y is upper left corner, then w, h
+		const y = 74.25 * (printRow - 1);
+		this.myPdf.rect(x, y, 105, 74.25); //x y is upper left corner, then w, h
 		this.myPdf.addImage(imgData, "JPEG", x + 43, y + 12, 50, 50);
 	}
 
