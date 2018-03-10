@@ -47,23 +47,16 @@ class Basic extends Component {
       });
 
       //now convert the canvases from the gif to images
-      const promises = obj.savedRenderingContexts.map(item => {
+      const promises = obj.savedRenderingContexts.map((item, index) => {
         //this returns an array of promises
-        return convertCanvasToImage(item).then(x => {
+        return convertCanvasToImage(item, index).then(x => {
           return x;
         });
       });
       //when all the promises come back, add the array of individual images to state
-      Promise.all(promises)
-        .then(function(results) {
-          return results;
-        })
-        .then(imageArray => {
-          getImageFromUrl(imageArray[0].src, Pdf.addPageToPDF);
-          this.setState({
-            gifArray: imageArray
-          });
-        });
+      Promise.all(promises).then(function(results) {
+        return results;
+      });
     });
   }
 
@@ -116,9 +109,5 @@ class Basic extends Component {
     );
   }
 }
-// <FileDisplay
-// files={this.state.files}
-// gifArray={this.state.gifArray}
-// />
 
 export default Basic;

@@ -2,7 +2,7 @@ import gifshot from "gifshot";
 import Pdf from "./pdfFactory.js";
 
 // convert gif to frames
-export const convertCanvasToImage = imagedata => {
+export const convertCanvasToImage = (imagedata, index) => {
   return new Promise((resolve, reject) => {
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext("2d");
@@ -11,21 +11,9 @@ export const convertCanvasToImage = imagedata => {
     ctx.putImageData(imagedata, 0, 0);
     var image = new Image();
     image.src = canvas.toDataURL();
-    Pdf.addPageToPDF(image);
+    Pdf.addPageToPDF(image, index + 2); // +2 because index is 0 and plus a page for the title card
     resolve(image);
   });
-};
-
-export const getImageFromUrl = (url, callback) => {
-  var img = new Image();
-  img.crossOrigin = " ";
-  img.onError = function() {
-    alert('Cannot load image: "' + url + '"');
-  };
-  img.onload = function() {
-    callback(img);
-  };
-  img.src = url;
 };
 
 // convert to a gif
@@ -40,12 +28,7 @@ export const convertToGif = (files, progressCallback) => {
         numFrames: 10,
         progressCallback: function(captureProgress) {
           progressCallback(captureProgress);
-          //
           console.log(captureProgress * 100, " % done");
-          // TODO somehow need to bind to this
-          // this.setState({
-          //   loadingProgress: captureProgress * 100
-          // });
         }
       },
       function(obj) {
