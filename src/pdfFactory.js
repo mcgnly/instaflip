@@ -14,6 +14,7 @@ class Pdf {
 	}
 
 	instantiatePDF(name) {
+		this.myPdf.setFont("courier");
 		this.myPdf.text("Instaflip", 42, 40);
 		this.myPdf.text("by: " + name, 42, 50);
 	}

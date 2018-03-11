@@ -28,6 +28,7 @@
 
 .pdfButton {
 	grid-column-start: 2;
+	grid-row-start: 3;
 	background-color: #fcd633;
 	border-radius: 5px;
 	margin: 20px;
@@ -40,4 +41,14 @@
 	border-radius: 5px;
 	margin: 20px;
 	padding: 20px;
+}
+
+.nameInput {
+	border: 1px solid black;
+	margin: 20px;
+	padding: 5px;
+}
+
+.centerColumn {
+	grid-column-start: 2;
 }

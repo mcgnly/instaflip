@@ -17,17 +17,29 @@ class Basic extends Component {
     this.state = {
       files: [],
       gifVideo: "",
-      gifArray: [],
-      loadingProgress: 0
+      // gifArray: [],
+      loadingProgress: 0,
+      madeBy: "",
+      emailTo: ""
     };
   }
 
-  componentDidMount() {
-    Pdf.instantiatePDF("katie");
+  updateName = evt => {
+    //arrow fn so I don't have to bind to this
+    this.setState({ madeBy: evt.target.value });
+  };
+  updateEmail = evt => {
+    //arrow fn so I don't have to bind to this
+    this.setState({ emailTo: evt.target.value });
+  };
+
+  startPdf() {
+    Pdf.instantiatePDF(this.state.madeBy);
   }
 
   // drop an .mp4 in
   onDrop(files) {
+    this.startPdf();
     this.setState({
       files
     });
@@ -53,10 +65,10 @@ class Basic extends Component {
           return x;
         });
       });
-      //when all the promises come back, add the array of individual images to state
-      Promise.all(promises).then(function(results) {
-        return results;
-      });
+      // //when all the promises come back, add the array of individual images to state
+      // Promise.all(promises).then(function(results) {
+      //   return results;
+      // });
     });
   }
 
@@ -75,6 +87,18 @@ class Basic extends Component {
           </h3>
         )}
         <section>
+          {!this.state.gifVideo &&
+            !this.state.loadingProgress > 0 && (
+              <div>
+                Made By:
+                <input
+                  type="text"
+                  className="nameInput"
+                  onChange={this.updateName}
+                />
+                <FileUploader onDrop={this.onDrop.bind(this)} />
+              </div>
+            )}
           {this.state.loadingProgress > 0 &&
             !this.state.gifVideo && (
               <div>
@@ -90,15 +114,19 @@ class Basic extends Component {
                 <h3>Converting...</h3>
               </div>
             )}
-          {!this.state.gifVideo &&
-            !this.state.loadingProgress > 0 && (
-              <FileUploader onDrop={this.onDrop.bind(this)} />
-            )}
           {this.state.gifVideo && (
             <div className="gifDisplay">
               <img className="gifElement" src={this.state.gifVideo} alt="gif" />
+              <div className="centerColumn">
+                Email finished PDF to:
+                <input
+                  type="text"
+                  className="nameInput"
+                  onChange={this.updateEmail}
+                />
+              </div>
               <div className="pdfButton" onClick={Pdf.savePDF}>
-                Download the PDF to print from home
+                Get PDF
               </div>
             </div>
           )}
