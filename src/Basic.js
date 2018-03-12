@@ -10,6 +10,7 @@ import {
 import Circle from "react-progressbar";
 import "./Basic.css";
 import "./loading-bar.css";
+import SendEmail from "./emailUtil";
 
 class Basic extends Component {
   constructor() {
@@ -76,6 +77,7 @@ class Basic extends Component {
     const widthOfProgressBar = 500 * this.state.loadingProgress;
     return (
       <div>
+        <SendEmail sendToAddress="katie@mcgnly.com" />
         {!this.state.gifVideo ? (
           <h3 className="description">
             Convert your instagram story into a flipbook. In case that's
