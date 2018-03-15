@@ -7,10 +7,8 @@ import {
   getImageFromUrl,
   convertToGif
 } from "./imageUtils.js";
-import Circle from "react-progressbar";
 import "./Basic.css";
 import "./loading-bar.css";
-import SendEmail from "./emailUtil";
 
 class Basic extends Component {
   constructor() {
@@ -66,10 +64,6 @@ class Basic extends Component {
           return x;
         });
       });
-      // //when all the promises come back, add the array of individual images to state
-      // Promise.all(promises).then(function(results) {
-      //   return results;
-      // });
     });
   }
 
@@ -77,7 +71,6 @@ class Basic extends Component {
     const widthOfProgressBar = 500 * this.state.loadingProgress;
     return (
       <div>
-        <SendEmail sendToAddress="katie@mcgnly.com" />
         {!this.state.gifVideo ? (
           <h3 className="description">
             Convert your instagram story into a flipbook. In case that's
@@ -119,16 +112,12 @@ class Basic extends Component {
           {this.state.gifVideo && (
             <div className="gifDisplay">
               <img className="gifElement" src={this.state.gifVideo} alt="gif" />
-              <div className="centerColumn">
-                Email finished PDF to:
-                <input
-                  type="text"
-                  className="nameInput"
-                  onChange={this.updateEmail}
-                />
-              </div>
               <div className="pdfButton" onClick={Pdf.savePDF}>
                 Get PDF
+              </div>
+              <div className="centerColumn">
+                Download the PDF, and you can email it to yourself or save to
+                Drive or dropbox to print.
               </div>
             </div>
           )}

@@ -1,15 +1,17 @@
 .gifDisplay {
 	display: grid;
-	grid-template-columns: 25% auto 25%;
+	grid-template-columns: 20% auto 20%;
 	grid-template-rows: 25% auto 25%;
 }
 
 .gifElement {
+	margin: auto;
 	grid-column-start: 2;
 	grid-row-start: 1;
 }
 
 .gifTitle {
+	margin: 10px;
 	grid-column-start: 2;
 	grid-row-start: 2;
 }
@@ -50,5 +52,6 @@
 }
 
 .centerColumn {
+	margin: 10px;
 	grid-column-start: 2;
 }

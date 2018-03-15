@@ -4,16 +4,18 @@
 }
 
 .App-header {
-  background-image: url("./img/mahir-uysal-nexus5x.jpg");
+  background-image: url("./img/camerahandminified.jpg");
   background-color: #222;
-  height: 150px;
+  height: 5em;
   padding: 20px;
   color: white;
   background-size: cover;
+  background-position: 0% 40%;
 }
 
 .App-title {
   font-size: 1.5em;
+  margin-top: 2em;
 }
 
 .App-intro {
@@ -24,11 +26,24 @@
   margin: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 600px) {
+  /* ipad sized and up */
+  .App-header {
+    background-position: 0% 40%;
+    height: 8em;
   }
-  to {
-    transform: rotate(360deg);
+  .App-title {
+    font-size: 2.5em;
   }
 }
+
+@media (min-width: 900px) {
+  .App-header {
+    background-position: 0% 40%;
+    height: 15em;
+  }
+  .App-title {
+    font-size: 2.5em;
+  }
+}
+
