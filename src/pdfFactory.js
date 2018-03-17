@@ -6,6 +6,7 @@ class Pdf {
 			orientation: "landscape",
 			format: [74, 105]
 		};
+		this.printPg = 0;
 		this._type = "Pdf";
 		this.myPdf = new jsPDF();
 		this.instantiatePDF = this.instantiatePDF.bind(this);
@@ -23,9 +24,13 @@ class Pdf {
 		// 2 cols and 4 rows fit on a page
 		const col = pgNumber % 2 === 0 ? 2 : 1; //1 or 2
 		const row = Math.ceil(pgNumber / 2); //1-4
-		const printRow = row > 4 ? row - 4 : row;
-		if (printRow === 1 && col === 1) {
+
+		const printRow = row - 4 * this.printPg;
+		console.log("col", col, "row", row, printRow);
+		if (printRow === 4 && col === 2) {
+			this.printPg++;
 			this.myPdf.addPage();
+			console.log("new page", this.printPg);
 		}
 		const x = 105 * (col - 1);
 		const y = 74.25 * (printRow - 1);
