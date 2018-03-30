@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ScriptLoader from "react-script-loader-hoc";
-import { StripeProvider, Elements } from "react-stripe-elements";
 import LoadingIcon from "./LoadingIcon";
 import Checkout from "./Checkout";
 import "./OrderForm.css";
@@ -69,7 +68,6 @@ class OrderForm extends Component {
   populateForm(ev) {
     let args = { ...this.state.args };
     args[ev.target.id] = ev.target.value;
-    // console.log(stateItem[ev.target.id]);
     this.setState({ args });
   }
 
@@ -84,16 +82,16 @@ class OrderForm extends Component {
     return (
       <div>
         <h1>ORDER YOUR FLIPBOOK</h1>
-        <p>
+        <p className="aboutText">
           If you would prefer to buy a professionally printed and bound flipbook
-          rather than print your own, we offer this service for 20EUR. Currently
-          we only ship within Germany.
+          rather than print your own, we offer this service for 20EUR including
+          shipping.
         </p>
         <div className="billingInfoForm">
           <h4>Billing Information</h4>
           {this.generateForm()}
           <label>
-            Shipping information different? :
+            Shipping information different?
             <input type="checkbox" onChange={event => this.onCheck(event)} />
           </label>
         </div>
@@ -109,7 +107,10 @@ class OrderForm extends Component {
           amount={20}
           args={this.state.args}
         />
-        <div onClick={() => this.props.changePage("main")}>
+        <div
+          className="pageChange"
+          onClick={() => this.props.changePage("main")}
+        >
           Go Back to Main Page
         </div>
       </div>

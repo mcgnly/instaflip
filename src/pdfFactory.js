@@ -2,6 +2,7 @@ import jsPDF from "jspdf";
 
 class Pdf {
 	constructor() {
+		// eslint-disable-next-line
 		const options = {
 			orientation: "landscape",
 			format: [74, 105]

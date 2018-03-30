@@ -13,9 +13,9 @@ export default ({ onDrop }) => (
 				want to do this over wifi.
 			</h4>
 			<p>
-				Videos under 2 seconds will be automatically repeated, and will
-				be cropped automatically after 5 seconds- This helps keep the
-				book a manageable size
+				Flipbooks will be generated from about 5 seconds of video-
+				uploads shorter than this will be repeated, longer than this
+				will be cropped.
 			</p>
 		</div>
 	</div>

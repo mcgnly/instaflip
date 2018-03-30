@@ -60,7 +60,7 @@ class Basic extends Component {
       });
 
       //now convert the canvases from the gif to images
-      const promises = obj.savedRenderingContexts.map((item, index) => {
+      obj.savedRenderingContexts.map((item, index) => {
         //this returns an array of promises, because each conversion takes a while
         return convertCanvasToImage(item, index).then(image => {
           // adding a 'page' of the flipbook, 8 fit on an A4 sheet
@@ -134,10 +134,16 @@ class Basic extends Component {
                   </div>
                 </div>
               )}
-              <div onClick={() => this.updateView("about")}>
+              <div
+                className="pageChange"
+                onClick={() => this.updateView("about")}
+              >
                 About this project
               </div>
-              <div onClick={() => this.updateView("order")}>
+              <div
+                className="pageChange"
+                onClick={() => this.updateView("order")}
+              >
                 Order your flipbook
               </div>
             </section>

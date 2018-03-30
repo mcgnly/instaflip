@@ -23,7 +23,7 @@
 }
 
 .description {
-  margin: 1em;
+  margin: 1em 1em 0 1em;
 }
 
 @media (min-width: 600px) {

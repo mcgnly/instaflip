@@ -47,11 +47,17 @@
 
 .nameInput {
 	border: 1px solid black;
-	margin: 20px;
+	margin: 2em;
 	padding: 5px;
 }
 
 .centerColumn {
 	margin: 10px;
 	grid-column-start: 2;
+}
+
+.pageChange {
+	font-weight: bold;
+	cursor: pointer;
+	margin: 1em;
 }
