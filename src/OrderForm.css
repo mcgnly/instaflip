@@ -1,0 +1,9 @@
+.billingInfoForm,
+.shippingInfoForm {
+	margin: 20px;
+}
+.billingInfoForm *,
+.shippingInfoForm * {
+	display: block;
+	text-align: left;
+}

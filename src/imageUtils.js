@@ -27,7 +27,7 @@ export const convertToGif = (files, updateLoadingBar) => {
         // the renderingContexts are the individual frames as canvas image binary data
         saveRenderingContexts: true,
         //standard 10 frames per second, number of frames caps it
-        numFrames: 50,
+        numFrames: 52,
         // captureProgress is the 0-1 amount done it is working through the video
         progressCallback: function(captureProgress) {
           updateLoadingBar(captureProgress);

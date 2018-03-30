@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pdf from "./pdfFactory.js";
 import About from "./About.js";
+import OrderForm from "./OrderForm.js";
 import FileUploader from "./FileUploader.js";
 import { convertCanvasToImage, convertToGif } from "./imageUtils.js";
 import "./Basic.css";
@@ -74,7 +75,9 @@ class Basic extends Component {
     return (
       <div>
         {this.state.view === "about" && <About changePage={this.updateView} />}
-        {this.state.view === "buy" && <About />}
+        {this.state.view === "order" && (
+          <OrderForm changePage={this.updateView} />
+        )}
         {this.state.view === "main" && (
           <div>
             {!this.state.gifVideo ? (
@@ -133,6 +136,9 @@ class Basic extends Component {
               )}
               <div onClick={() => this.updateView("about")}>
                 About this project
+              </div>
+              <div onClick={() => this.updateView("order")}>
+                Order your flipbook
               </div>
             </section>
           </div>
