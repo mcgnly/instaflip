@@ -4,6 +4,7 @@ import StripeCheckout from "react-stripe-checkout";
 
 import STRIPE_PUBLISHABLE from "./constants/stripe";
 import PAYMENT_SERVER_URL from "./constants/server";
+import EMAIL_SERVER_URL from "./constants/email";
 
 const CURRENCY = "EUR";
 
@@ -12,29 +13,53 @@ const fromEuroToCent = amount => amount * 100;
 const successPayment = data => {
 	alert("Payment Successful");
 };
-
-const errorPayment = data => {
-	alert("Payment Error");
+const successEmail = data => {
+	alert("Email Successful");
 };
 
-const onToken = (amount, description, args) => token =>
-	axios
-		.post(PAYMENT_SERVER_URL, {
-			description,
-			source: token.id,
-			currency: CURRENCY,
-			amount: fromEuroToCent(amount),
-			args
-		})
+const errorPayment = data => {
+	alert("Payment Error", data);
+};
+
+const stripePost = (token, amount, description) =>
+	axios.post(PAYMENT_SERVER_URL, {
+		description,
+		source: token.id,
+		currency: CURRENCY,
+		amount: fromEuroToCent(amount)
+	});
+
+export const sendEmail = (args, pdf) => {
+	var fd = new FormData();
+	fd.append("file", pdf);
+	console.log("pdf to srv", pdf, fd);
+	axios({
+		method: "post",
+		url: EMAIL_SERVER_URL.toString(),
+		data: fd,
+		headers: { "content-type": "multipart/form-data" }
+	}).then(
+		res => {
+			console.log("res", res);
+		},
+		err => {
+			console.log("err", err);
+		}
+	);
+};
+
+const onToken = (amount, description, args, pdf) => token => {
+	Promise.all([stripePost(token, amount, description), sendEmail(args, pdf)])
 		.then(successPayment)
 		.catch(errorPayment);
+};
 
-const Checkout = ({ name, description, amount }) => (
+const Checkout = ({ name, description, amount, args, pdf }) => (
 	<StripeCheckout
 		name={name}
 		description={description}
 		amount={fromEuroToCent(amount)}
-		token={onToken(amount, description)}
+		token={onToken(amount, description, args, pdf)}
 		currency={CURRENCY}
 		stripeKey={STRIPE_PUBLISHABLE}
 	/>

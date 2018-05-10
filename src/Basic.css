@@ -30,7 +30,7 @@
 
 .pdfButton {
 	grid-column-start: 2;
-	grid-row-start: 3;
+	/*grid-row-start: 3;*/
 	background-color: #fcd633;
 	border-radius: 5px;
 	margin: 20px;
@@ -60,4 +60,8 @@
 	font-weight: bold;
 	cursor: pointer;
 	margin: 1em;
+}
+
+.loadingBar {
+	margin: 0.5em;
 }

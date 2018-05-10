@@ -5,7 +5,7 @@ import "./FileUploader.css";
 export default ({ onDrop }) => (
 	<div className="dropzone">
 		<Dropzone onDrop={onDrop} accept=".mp4" className="dropButton">
-			<p>GO</p>
+			<p>UPLOAD VIDEO</p>
 		</Dropzone>
 		<div className="descriptionText">
 			<h4>

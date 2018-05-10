@@ -26,23 +26,24 @@ const SHIPPING_FIELDS = [
 class OrderForm extends Component {
   constructor(props) {
     super(props);
+    console.log("props", props);
     this.state = {
       shippingDifferentThanBilling: false,
       args: {
-        billing_name: "",
-        billing_address_country: "",
-        billing_address_zip: "",
-        billing_address_state: "",
-        billing_address_line1: "",
-        billing_address_city: "",
-        billing_address_country_code: "",
-        shipping_name: "",
-        shipping_address_country: "",
-        shipping_address_zip: "",
-        shipping_address_state: "",
-        shipping_address_line1: "",
-        shipping_address_city: "",
-        shipping_address_country_code: ""
+        // billing_name: "",
+        // billing_address_country: "",
+        // billing_address_zip: "",
+        // billing_address_state: "",
+        // billing_address_line1: "",
+        // billing_address_city: "",
+        // billing_address_country_code: "",
+        // shipping_name: "",
+        // shipping_address_country: "",
+        // shipping_address_zip: "",
+        // shipping_address_state: "",
+        // shipping_address_line1: "",
+        // shipping_address_city: "",
+        // shipping_address_country_code: ""
       }
     };
   }
@@ -103,9 +104,10 @@ class OrderForm extends Component {
         )}
         <Checkout
           name={"Instaflip"}
-          description={"turn your stories into a flipbook"}
+          description={`instaflip for: ${this.state.args.billing_name}`}
           amount={20}
           args={this.state.args}
+          pdf={this.props.pdf}
         />
         <div
           className="pageChange"

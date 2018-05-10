@@ -17,8 +17,8 @@
 .env.test.local
 .env.production.local
 .xcf
+.gif
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

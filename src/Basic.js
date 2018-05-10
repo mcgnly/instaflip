@@ -76,7 +76,7 @@ class Basic extends Component {
       <div>
         {this.state.view === "about" && <About changePage={this.updateView} />}
         {this.state.view === "order" && (
-          <OrderForm changePage={this.updateView} />
+          <OrderForm changePage={this.updateView} pdf={Pdf.convertToBlob()} />
         )}
         {this.state.view === "main" && (
           <div>
@@ -105,10 +105,10 @@ class Basic extends Component {
                 )}
               {this.state.loadingProgress > 0 &&
                 !this.state.gifVideo && (
-                  <div>
+                  <div className="loadingBar">
                     <svg height="10">
                       <rect
-                        width={widthOfProgressBar}
+                        width={widthOfProgressBar * 7 / 10}
                         height="10"
                         fill="orange"
                         fillOpacity="0.5"
@@ -125,27 +125,28 @@ class Basic extends Component {
                     src={this.state.gifVideo}
                     alt="gif"
                   />
-                  <div className="pdfButton" onClick={Pdf.savePDF}>
-                    Get PDF
-                  </div>
                   <div className="centerColumn">
-                    Download the PDF, and you can email it to yourself or save
-                    to Drive or dropbox to print.
+                    You can either download the PDF, and email it to yourself or
+                    save to Drive or dropbox to print yourself, or order a
+                    professionally printed and bound version for 20 euro.
+                  </div>
+                  <div className="pdfButton" onClick={Pdf.savePDF}>
+                    Download PDF
+                  </div>
+                  <div
+                    className="pdfButton centerColumn"
+                    onClick={() => {
+                      this.updateView("order");
+                    }}
+                  >
+                    Order flipbook
                   </div>
                 </div>
               )}
               <div
                 className="pageChange"
                 onClick={() => this.updateView("about")}
-              >
-                About this project
-              </div>
-              <div
-                className="pageChange"
-                onClick={() => this.updateView("order")}
-              >
-                Order your flipbook
-              </div>
+              />
             </section>
           </div>
         )}
