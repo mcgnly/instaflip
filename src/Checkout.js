@@ -33,8 +33,8 @@ export const postUpload = (args, pdf) => {
 	axios({
 		method: "post",
 		url: UPLOAD_SERVER_URL.toString(),
-		data: fd,
-		headers: { "content-type": "multipart/form-data" }
+		data: pdf,
+		headers: { "content-type": "application/pdf" }
 	}).then(
 		res => {
 			console.log("res", res);
