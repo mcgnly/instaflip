@@ -13,6 +13,7 @@ class Basic extends Component {
       view: "main",
       files: [],
       gifVideo: "",
+      images:[],
       loadingProgress: 0,
       madeBy: ""
     };
@@ -32,9 +33,27 @@ class Basic extends Component {
     Pdf.instantiatePDF(this.state.madeBy);
   }
 
+  generatePdf(format) {
+    // adding a 'page' of the flipbook, 8 fit on an A4 sheet
+    if (format==='A4'){
+      Pdf.makeA4pdf();
+      this.startPdf();
+      this.state.images.map((image, index)=>{
+        Pdf.addPageToPDFA4(image, index + 2); // +2 because index is 0 and plus a page for the title card
+      });
+    } else {
+      Pdf.makeA7pdf();
+      this.startPdf();
+      this.state.images.map((image, index)=>{
+        Pdf.addPageToPDFA7(image, index + 2); // +2 because index is 0 and plus a page for the title card
+      });
+    }
+    Pdf.savePDF();
+  }
+
   // drop an .mp4 in, instantiate pdf singleton, add mp4 and gif to state
   onDrop(files) {
-    this.startPdf();
+    
     this.setState({
       files
     });
@@ -63,8 +82,11 @@ class Basic extends Component {
       obj.savedRenderingContexts.map((item, index) => {
         //this returns an array of promises, because each conversion takes a while
         return convertCanvasToImage(item, index).then(image => {
-          // adding a 'page' of the flipbook, 8 fit on an A4 sheet
-          Pdf.addPageToPDF(image, index + 2); // +2 because index is 0 and plus a page for the title card
+          // add the image to an array, from which we can generate the pdf later
+          this.setState({
+            images: this.state.images.concat(image)
+          });
+          
         });
       });
     });
@@ -130,8 +152,11 @@ class Basic extends Component {
                     save to Drive or dropbox to print yourself, or order a
                     professionally printed and bound version for 20 euro.
                   </div>
-                  <div className="pdfButton" onClick={Pdf.savePDF}>
-                    Download PDF
+                  <div className="pdfButton" onClick={()=>this.generatePdf('A7')}>
+                    generate the A7 version to get printed
+                  </div>
+                  <div className="pdfButton" onClick={()=>this.generatePdf('A4')}>
+                    Download PDF (A4)
                   </div>
                   <div
                     className="pdfButton centerColumn"

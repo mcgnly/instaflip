@@ -2,26 +2,36 @@ import jsPDF from "jspdf";
 
 class Pdf {
 	constructor() {
-		// eslint-disable-next-line
+		this.printPg = 0;
+		this._type = "Pdf";
+
+		this.makeA4pdf = this.makeA4pdf.bind(this);
+		this.makeA7pdf = this.makeA7pdf.bind(this);
+		this.instantiatePDF = this.instantiatePDF.bind(this);
+		this.addPageToPDFA4 = this.addPageToPDFA4.bind(this);
+		this.addPageToPDFA7 = this.addPageToPDFA7.bind(this);
+		this.savePDF = this.savePDF.bind(this);
+	}
+	
+	makeA4pdf(){
+		this.myPdf = new jsPDF();// no options mean portrait A4
+	}
+	
+	makeA7pdf(){
 		const options = {
 			orientation: "landscape",
 			format: [74, 105]
 		};
-		this.printPg = 0;
-		this._type = "Pdf";
-		this.myPdf = new jsPDF();
-		this.instantiatePDF = this.instantiatePDF.bind(this);
-		this.addPageToPDF = this.addPageToPDF.bind(this);
-		this.savePDF = this.savePDF.bind(this);
+		this.myPdf = new jsPDF(options);// options mean A7 landscape
 	}
-
+	
 	instantiatePDF(name) {
 		this.myPdf.setFont("courier");
 		this.myPdf.text("Instaflip", 42, 40);
 		this.myPdf.text("by: " + name, 42, 50);
 	}
-
-	addPageToPDF(imgData, pgNumber) {
+	
+	addPageToPDFA4(imgData, pgNumber) {
 		// 2 cols and 4 rows fit on a page
 		const col = pgNumber % 2 === 0 ? 2 : 1; //1 or 2
 		const row = Math.ceil(pgNumber / 2); //1-4
@@ -38,6 +48,13 @@ class Pdf {
 			this.myPdf.addPage();
 			console.log("new page", this.printPg);
 		}
+	}
+
+	addPageToPDFA7(imgData, pgNumber) {
+		// 1 img per page, A7 105x74.25 mm
+		this.myPdf.addPage();
+		this.myPdf.text(pgNumber.toString(), 10, 40);
+		this.myPdf.addImage(imgData, "JPEG", 43, 12, 50, 50);
 	}
 
 	savePDF() {
