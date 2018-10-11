@@ -98,7 +98,7 @@ class Basic extends Component {
       <div>
         {this.state.view === "about" && <About changePage={this.updateView} />}
         {this.state.view === "order" && (
-          <OrderForm changePage={this.updateView} pdf={Pdf.convertToBlob()} />
+          <OrderForm changePage={this.updateView} pdf={Pdf.convertToBlob()} name={this.state.madeBy} />
         )}
         {this.state.view === "main" && (
           <div>
@@ -121,7 +121,15 @@ class Basic extends Component {
                       type="text"
                       className="nameInput"
                       onChange={this.updateName}
+                      maxLength="15"
                     />
+                    {
+                      this.state.madeBy.length===15 ?
+                      <h3 className="errorMsg">
+                        You have reached the maximum length for the title page!
+                      </h3> :
+                      null
+                    }
                     <FileUploader onDrop={this.onDrop.bind(this)} />
                   </div>
                 )}
@@ -171,7 +179,9 @@ class Basic extends Component {
               <div
                 className="pageChange"
                 onClick={() => this.updateView("about")}
-              />
+              >
+                about this project
+              </div>
             </section>
           </div>
         )}

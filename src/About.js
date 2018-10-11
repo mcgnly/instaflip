@@ -23,4 +23,4 @@ export default ({ changePage }) => (
 	</div>
 );
 
-<mcgnly />;
+// <mcgnly />;
