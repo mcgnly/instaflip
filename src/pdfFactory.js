@@ -55,6 +55,8 @@ class Pdf {
 		this.myPdf.addPage();
 		this.myPdf.text(pgNumber.toString(), 10, 40);
 		this.myPdf.addImage(imgData, "JPEG", 43, 12, 50, 50);
+		// add a blank page so the image is only on one side!
+		this.myPdf.addPage();
 	}
 
 	savePDF() {

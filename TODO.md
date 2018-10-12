@@ -1,6 +1,4 @@
 
-\*\* hook a7 back up to buy button
-\*\* add blank page in between for a7
 \*\* proper routing
     \*\* topbar redirects to home
 

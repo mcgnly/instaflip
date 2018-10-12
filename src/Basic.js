@@ -41,6 +41,7 @@ class Basic extends Component {
       this.state.images.map((image, index)=>{
         Pdf.addPageToPDFA4(image, index + 2); // +2 because index is 0 and plus a page for the title card
       });
+      Pdf.savePDF();
     } else {
       Pdf.makeA7pdf();
       this.startPdf();
@@ -48,12 +49,10 @@ class Basic extends Component {
         Pdf.addPageToPDFA7(image, index + 2); // +2 because index is 0 and plus a page for the title card
       });
     }
-    Pdf.savePDF();
   }
 
   // drop an .mp4 in, instantiate pdf singleton, add mp4 and gif to state
   onDrop(files) {
-    
     this.setState({
       files
     });
@@ -86,9 +85,9 @@ class Basic extends Component {
           this.setState({
             images: this.state.images.concat(image)
           });
-          
         });
       });
+      
     });
   }
 
@@ -160,15 +159,13 @@ class Basic extends Component {
                     save to Drive or dropbox to print yourself, or order a
                     professionally printed and bound version for 20 euro.
                   </div>
-                  <div className="pdfButton" onClick={()=>this.generatePdf('A7')}>
-                    generate the A7 version to get printed
-                  </div>
                   <div className="pdfButton" onClick={()=>this.generatePdf('A4')}>
                     Download PDF (A4)
                   </div>
                   <div
                     className="pdfButton centerColumn"
                     onClick={() => {
+                      this.generatePdf('A7');
                       this.updateView("order");
                     }}
                   >
