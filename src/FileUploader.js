@@ -17,6 +17,10 @@ export default ({ onDrop }) => (
 				uploads shorter than this will be repeated, longer than this
 				will be cropped.
 			</p>
+			<div className="centerColumn">
+                Some rules of the game: nothing illegal, no porn, 
+                I have to look through these things so please don't be gross. 
+                </div>
 		</div>
 	</div>
 );

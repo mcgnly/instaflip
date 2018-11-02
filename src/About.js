@@ -13,9 +13,9 @@ export default ({ changePage }) => (
 			other projects I have done.
 		</p>
 		<p>
-			If you liked this project and would like to help support it,
-			consider making a pledge at{" "}
-			<a href="https://www.patreon.com/mcgnly">patreon.com/mcgnly</a>
+			If you have questions about how we use or store your data (we don't, and we
+			use Stripe for payment so we never put personal-identifying info 
+			on our servers), please just get in touch.
 		</p>
 		<div className="pageChange" onClick={() => changePage("main")}>
 			Go Back to Main Page
